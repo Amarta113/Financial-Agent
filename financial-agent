@@ -2,7 +2,11 @@ from phi.agent import Agent
 from phi.model.groq import Groq 
 from phi.tools.yfinance import YFinanceTools
 from phi.tools.duckduckgo import DuckDuckGo
+from dotenv import load_dotenv
+import os, groq
 
+load_dotenv()
+groq.api_key=os.getenv('GROQ-API_KEY')
 
 web_search_agent = Agent(
     name = "Web Search Agent",
@@ -27,9 +31,11 @@ finance_agent = Agent(
 
 multi_ai_agent = Agent (
     team = [web_search_agent, finance_agent],
+    model = Groq(id="llama-3.1-8b-instant"),
     instructions = ['Always include sources', 'Use tables to display the data'],
     show_tool_calls=True,
     markdown=True
 )
 
-multi_ai_agent.print_response("Summarize analyst recommendatoin and share the latest newsfor NVDA", stream=True)
+multi_ai_agent.print_response("Summarize analyst recommendatoin and share the latest news for NVDA", stream=True)
+
