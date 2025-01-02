@@ -37,5 +37,5 @@ multi_ai_agent = Agent (
     markdown=True
 )
 
-multi_ai_agent.print_response("Summarize analyst recommendatoin and share the latest news for NVDA", stream=True)
+multi_ai_agent.print_response("Summarize analyst recommendatoin and share the latest news for META", stream=True)
 
